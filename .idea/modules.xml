@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FatGladius.iml" filepath="$PROJECT_DIR$/FatGladius.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GladiusRPG.iml" filepath="$PROJECT_DIR$/GladiusRPG.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

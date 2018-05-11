@@ -1,8 +1,10 @@
 package com.example.nosrick.fatgladius;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileOutputStream;
 
 public class GoalActivity extends AppCompatActivity
@@ -69,6 +72,7 @@ public class GoalActivity extends AppCompatActivity
         catch(Exception E)
         {
             Toast.makeText(this, "Invalid Kgs entered. Is it a whole number?", Toast.LENGTH_LONG).show();
+            Log.w(this.getClass().toString(), E.getMessage());
             return;
         }
 
@@ -81,6 +85,7 @@ public class GoalActivity extends AppCompatActivity
         catch(Exception E)
         {
             Toast.makeText(this, "Invalid levels entered. Is it a whole number?", Toast.LENGTH_LONG).show();
+            Log.w(this.getClass().toString(), E.getMessage());
             return;
         }
 
@@ -93,6 +98,7 @@ public class GoalActivity extends AppCompatActivity
         catch (Exception E)
         {
             Toast.makeText(this, "Invalid weight entered. Is it a valid number?", Toast.LENGTH_LONG).show();
+            Log.w(this.getClass().toString(), E.getMessage());
             return;
         }
 
@@ -105,6 +111,7 @@ public class GoalActivity extends AppCompatActivity
         catch(Exception E)
         {
             Toast.makeText(this, "Invalid height entered. Is it a valid number?", Toast.LENGTH_LONG).show();
+            Log.w(this.getClass().toString(), E.getMessage());
             return;
         }
 
@@ -129,6 +136,7 @@ public class GoalActivity extends AppCompatActivity
         catch(Exception E)
         {
             Toast.makeText(this, "Invalid age entered. Is it a whole number?", Toast.LENGTH_LONG).show();
+            Log.w(this.getClass().toString(), E.getMessage());
             return;
         }
 
@@ -196,22 +204,26 @@ public class GoalActivity extends AppCompatActivity
         catch(Exception E)
         {
             Toast.makeText(this, "Something went wrong making your profile.", Toast.LENGTH_LONG).show();
+            Log.w(this.getClass().toString(), E.getMessage());
             return;
         }
 
         try
         {
-            FileOutputStream outputStream = openFileOutput("profile.json", Context.MODE_PRIVATE);
+            FileOutputStream outputStream = new FileOutputStream(new File(getFilesDir(), "profile.json"));
             outputStream.write(profile.toString().getBytes());
             outputStream.close();
         }
         catch(Exception E)
         {
             Toast.makeText(this, "Something went wrong saving your profile.", Toast.LENGTH_LONG).show();
+            Log.w(this.getClass().toString(), E.getMessage());
             return;
         }
 
         Toast.makeText(this, "Your BMR is " + BMR, Toast.LENGTH_LONG).show();
+        Intent mainIntent = new Intent(this, MainActivity.class);
+        startActivity(mainIntent);
     }
 
     protected int MaleBMR(float weight, int height, int age)
